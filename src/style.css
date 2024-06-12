@@ -92,13 +92,13 @@ input[type="number"] {
  text-align: center;
  border: 1px solid #000;
  border-radius: 5px;
- background-color: #FF0;
+ background-color: #FF3;
  cursor: pointer;
 }
 
 .button.disabled {
- color: #888;
- background-color: #F00;
+ color: #FFF;
+ background-color: #888;
 }
 
 .button.large {
