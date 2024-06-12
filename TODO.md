@@ -5,7 +5,7 @@
 
 # Other
 
-- Revealed and blocked (both together) should appear to other player as white (not black)
+- Revealed and blocked (both together) should appear to other player as light gray - lighter than unrevealed (not black)
 - Add sounds
 - Shrink fields on mobile low resolutions
 - Add rules text at start
