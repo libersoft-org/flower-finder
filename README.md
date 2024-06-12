@@ -31,7 +31,7 @@
 ### Game settings
 
 - Before the game begins, the following is determined:
-  - Number of players (0 - 4)
+  - Number of players (0 - 8)
   - Size of playing area (10x10 - 30x30, default 20x20)
   - Number of flowers (1 - 30, default 10)
   - Number of stones (0 - 10, default 5)
