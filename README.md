@@ -12,7 +12,7 @@
 - [**Donations**](#donations)
 - [**Star history**](#star-history)
 
-## About Game
+## About
 
 - Flower Finder is a strategy game for 2 or more players.
 
