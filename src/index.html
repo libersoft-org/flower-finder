@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Flower Finder</title>
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ <div class="label big">Flower Finder</div>
+ <div id="settings">
+  <div class="label small center">Game Settings</div>
+  <table>
+   <tr>
+    <td>Grid Size (10 - 30):</td>
+    <td><input type="number" id="grid-size" name="grid-size" min="10" max="30" value="20"></td>
+   </tr>
+   <tr>
+    <td>Number of 👨 (0 - 4):</td>
+    <td><input type="number" id="num-players" name="num-players" min="0" max="4" value="2"></td>
+   </tr>
+   <tr>
+    <td>Number of 🌸 (1 - 30):</td>
+    <td><input type="number" id="num-flowers" name="num-flowers" min="1" max="30" value="10"></td>
+   </tr>
+   <tr>
+    <td>Number of 🪨 (0 - 10):</td>
+    <td><input type="number" id="num-stones" name="num-stones" min="0" max="20" value="5"></td>
+   </tr>
+   <tr>
+    <td>Number of 🔍 (0 - 10):</td>
+    <td><input type="number" id="num-magnifiers" name="num-magnifiers" min="0" max="20" value="5"></td>
+   </tr>
+   <tr>
+    <td>Number of ⏰ (0 - 10):</td>
+    <td><input type="number" id="num-clocks" name="num-clocks" min="0" max="20" value="5"></td>
+   </tr>
+  </table>
+  <div class="button large" onclick="startGame()">Start</div>
+ </div>
+ <div id="game" style="display: none;">
+  <div id="board"></div>
+  <div id="score"></div>
+  <div id="player"></div>
+  <div id="actions">
+   <div>
+    <span id="magnifier-count">0</span>
+    <div class="button disabled" id="use-magnifier" onclick="useItem(1)">Use 🔍</div>
+   </div>
+   <div>
+    <span id="stone-count">0</span>
+    <div class="button disabled" id="use-stone" onclick="useItem(2)">Place 🪨</div>
+   </div>
+  </div>
+  <div class="button" id="new-game" onclick="resetGame()">New Game</div>
+ </div>
+ <script src="script.js"></script>
+</body>
+</html>

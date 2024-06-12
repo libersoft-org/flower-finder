@@ -1,0 +1,117 @@
+body {
+ font-family: Verdana, Geneva, Tahoma, sans-serif;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ margin: 0;
+ padding: 0;
+ background-color: #EEE;
+}
+
+#settings {
+ width: 400px;
+ max-width: calc(100% - 40px);
+ padding: 10px;
+ font-size: 18px;
+ border: 1px solid #000;
+ border-radius: 10px;
+ background-color: #DDD;
+}
+
+#settings table {
+ width: 100%;
+ margin-bottom: 20px;
+}
+
+input[type="number"] {
+ width: 60px;
+ padding: 10px;
+ border: 1px solid #888;
+ border-radius: 10px;
+ font-size: 18px;
+}
+
+#game {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
+
+#board {
+ display: grid;
+ gap: 2px;
+ margin-bottom: 10px;
+}
+
+#board .field {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ font-size: 20px;
+ border: 1px solid #333;
+ border-radius: 5px;
+ cursor: pointer;
+}
+
+#board .field.unrevealed {
+ background-color: #888;
+}
+
+#board .field.revealed {
+ background-color: #FFF;
+}
+
+#board .field.blocked {
+ background-color: #000;
+}
+
+#score, #player {
+ margin-bottom: 20px;
+}
+
+.label {
+ font-weight: bold;
+ margin-bottom: 10px;
+}
+
+.label.big {
+ font-size: 25px;
+}
+
+.label.small {
+ font-size: 20px;
+}
+
+.center {
+ text-align: center;
+}
+
+.button {
+ padding: 10px;
+ font-weight: bold;
+ text-align: center;
+ border: 1px solid #000;
+ border-radius: 5px;
+ background-color: #FF0;
+ cursor: pointer;
+}
+
+.button.disabled {
+ color: #888;
+ background-color: #F00;
+}
+
+.button.large {
+ width: calc(100% - 20px);
+}
+
+#actions {
+ display: flex;
+ gap: 10px;
+}
+
+#actions div {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
