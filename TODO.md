@@ -1,9 +1,9 @@
-Bugs:
+# Bugs
 
 - Game over alert is shown multiple times for some reason
 - When using magnifier, it collects items at black spots too (which should not)
 
-Other:
+# Other
 
 - Show all positions of flowers when the game is over - checkGameEnd
 - Shrink fields on mobile low resolutions
