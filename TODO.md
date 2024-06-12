@@ -10,4 +10,5 @@
 - Add rules text at start
 - Add game screenshot (screenshot.webp) for README
 - Revealed and blocked (both together) should appear to other player as some very dark gray
+- Add sounds
 - Remake field rendering in startGame (`repeat(${settings.gridSize}, 40px)` ...)
