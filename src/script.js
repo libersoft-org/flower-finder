@@ -98,7 +98,7 @@ function revealCell(x, y) {
 function renderCell(x, y, type) {
  const elBoard = qs('#board');
  const button = elBoard.children[x * settings.gridSize + y];
- button.classList.remove('unrevealed');
+ if (board[x][y].revealed) button.classList.remove('unrevealed');
  let symbol = '';
  switch (type) {
   case 1:
@@ -156,6 +156,11 @@ function checkGameEnd() {
   else {
    const winnerIndex = players.findIndex(player => player.flowers === maxFlowers);
    alert(`Game over! Player ${winnerIndex + 1} wins.`);
+  }
+  for (let x = 0; x < settings.gridSize; x++) {
+   for (let y = 0; y < settings.gridSize; y++) {
+    renderCell(x, y, board[x][y].type);
+   }
   }
  }
 }
