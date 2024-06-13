@@ -6,6 +6,16 @@ let currPlayer = 0;
 let currentAction = null;
 let gameOver = false;
 
+function showRules() {
+ qs('#settings').style.display = 'none';
+ qs('#rules').removeAttribute('style');
+}
+
+function showSettings() {
+ qs('#rules').style.display = 'none';
+ qs('#settings').removeAttribute('style');
+}
+
 function startGame() {
  settings = {
   numPlayers: Number(qs('#num-players').value),

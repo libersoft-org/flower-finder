@@ -1,63 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Flower Finder</title>
- <link rel="stylesheet" href="style.css">
- <script src="script.js"></script>
-</head>
-<body>
- <div class="label big">Flower Finder</div>
- <div id="settings">
-  <div class="label small center">Game Settings</div>
-  <table>
-   <tr>
-    <td>Grid Size (10 - 30):</td>
-    <td><input type="number" id="grid-size" name="grid-size" min="10" max="30" value="20"></td>
-   </tr>
-   <tr>
-    <td>Number of 👨 (2 - 8):</td>
-    <td><input type="number" id="num-players" name="num-players" min="2" max="8" value="2"></td>
-   </tr>
-   <tr>
-    <td>Number of 🌸 (1 - 30):</td>
-    <td><input type="number" id="num-flowers" name="num-flowers" min="1" max="30" value="20"></td>
-   </tr>
-   <tr>
-    <td>Number of 🪨 (0 - 10):</td>
-    <td><input type="number" id="num-stones" name="num-stones" min="0" max="20" value="10"></td>
-   </tr>
-   <tr>
-    <td>Number of 🔍 (0 - 10):</td>
-    <td><input type="number" id="num-magnifiers" name="num-magnifiers" min="0" max="20" value="10"></td>
-   </tr>
-   <tr>
-    <td>Number of ⏰ (0 - 10):</td>
-    <td><input type="number" id="num-clocks" name="num-clocks" min="0" max="20" value="10"></td>
-   </tr>
-  </table>
-  <div class="button large" onclick="startGame()">Start</div>
- </div>
- <div id="game" style="display: none;">
-  <div id="board"></div>
-  <div id="score"></div>
-  <div id="player"></div>
-  <div id="actions">
-   <div>
-    <span id="magnifier-count">0</span>
-    <div class="button disabled" id="use-magnifier" onclick="useItem(1)">Use 🔍</div>
-   </div>
-   <div>
-    <span id="stone-count">0</span>
-    <div class="button disabled" id="use-stone" onclick="useItem(2)">Use 🪨</div>
-   </div>
-   <div>
-    <span id="clock-count">0</span>
-    <div class="button disabled" id="use-clock" onclick="useItem(3)">Use ⏰</div>
-   </div>
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flower Finder</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+ </head>
+ <body>
+  <div class="label big">Flower Finder</div>
+  <div id="settings" class="box small">
+   <div class="label small center">Game Settings</div>
+   <table>
+    <tr>
+     <td>Grid Size (10 - 30):</td>
+     <td><input type="number" id="grid-size" name="grid-size" min="10" max="30" value="20"></td>
+    </tr>
+    <tr>
+     <td>Number of 👨 (2 - 8):</td>
+     <td><input type="number" id="num-players" name="num-players" min="2" max="8" value="2"></td>
+    </tr>
+    <tr>
+     <td>Number of 🌸 (1 - 30):</td>
+     <td><input type="number" id="num-flowers" name="num-flowers" min="1" max="30" value="20"></td>
+    </tr>
+    <tr>
+     <td>Number of 🪨 (0 - 10):</td>
+     <td><input type="number" id="num-stones" name="num-stones" min="0" max="20" value="10"></td>
+    </tr>
+    <tr>
+     <td>Number of 🔍 (0 - 10):</td>
+     <td><input type="number" id="num-magnifiers" name="num-magnifiers" min="0" max="20" value="10"></td>
+    </tr>
+    <tr>
+     <td>Number of ⏰ (0 - 10):</td>
+     <td><input type="number" id="num-clocks" name="num-clocks" min="0" max="20" value="10"></td>
+    </tr>
+   </table>
+   <div class="button large" onclick="startGame()">Start</div>
+   <div class="button large" onclick="showRules()">Rules</div>
   </div>
-  <div class="button" id="new-game" onclick="resetGame()">New Game</div>
- </div>
-</body>
+  <div id="game" style="display: none;">
+   <div id="board"></div>
+   <div id="score"></div>
+   <div id="player"></div>
+   <div id="actions">
+    <div>
+     <span id="magnifier-count">0</span>
+     <div class="button disabled" id="use-magnifier" onclick="useItem(1)">Use 🔍</div>
+    </div>
+    <div>
+     <span id="stone-count">0</span>
+     <div class="button disabled" id="use-stone" onclick="useItem(2)">Use 🪨</div>
+    </div>
+    <div>
+     <span id="clock-count">0</span>
+     <div class="button disabled" id="use-clock" onclick="useItem(3)">Use ⏰</div>
+    </div>
+   </div>
+   <div class="button" id="new-game" onclick="resetGame()">New Game</div>
+  </div>
+  <div id="rules" class="box big" style="display: none;">
+   <div class="label big">Game rules</div>
+   <div class="label small">Game objective</div>
+   <ul>
+    <li>The objective of the game is to find as many flowers as possible on the board.</li>
+   </ul>
+   <div class="label small">Game board</div>
+   <ul>
+    <li>The game board is square and is of an optional size.</li>
+    <li>At the beginning of the game, all game board fields are covered and all the objects are randomly placed under the fields.</li>
+    <li>Each square can contain a flower, a stone, a magnifying glass, a clock or be empty.</li>
+   </ul>
+   <div class="label small">Game settings</div>
+   <ul>
+    <li>Before the game begins, the following is determined:</li>
+    <ul>
+     <li>Number of players (2 - 8)</li>
+     <li>Size of playing area (10x10 - 30x30, default 20x20)</li>
+     <li>Number of flowers (1 - 30, default 20)</li>
+     <li>Number of stones (0 - 10, default 10)</li>
+     <li>Number of magnifying glasses (0 - 10, default 10)</li>
+     <li>Number of clocks (0 - 10, default 10)</li>
+    </ul>
+   </ul>
+   <div class="label small">Game start</div>
+   <ul>
+    <li>When the game starts, players take turns. In each turn, a player has the option to take one of the following actions:</li>
+    <ul>
+     <li>Choose which field to reveal (only fields that have not yet been revealed can be revealed)</li>
+     <li>Use an item:</li>
+     <ul>
+      <li>Magnifying glass: reveals all the objects not only on the selected field, but also on all the fields around it (i.e. reveals 3x3 fields instead of one)</li>
+      <li>Clock: Allows the player to make another action in the same turn</li>
+      <li>Stone: the player chooses on which square in the board he wants to place the stone. The stone ensures that the opposing player cannot reveal any square that is horizontally and vertically on the same level as the placed stone. The stone can only be placed on already revealed squares.</li>
+     </ul>
+    </ul>
+   </ul>
+   <div class="label small">Game ending</div>
+   <ul>
+    <li>Game Ending: the game ends when all flowers on the game board are collected or when no player has the opportunity to make another move. The game can end with one player winning or a draw.</li>
+   </ul>
+   <div class="button large" onclick="showSettings()">Back</div>
+  </div>
+ </body>
 </html>

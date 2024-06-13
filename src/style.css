@@ -8,8 +8,7 @@ body {
  background-color: #EEE;
 }
 
-#settings {
- width: 400px;
+.box {
  max-width: calc(100% - 40px);
  padding: 10px;
  font-size: 18px;
@@ -18,9 +17,17 @@ body {
  background-color: #DDD;
 }
 
-#settings table {
+.box table {
  width: 100%;
  margin-bottom: 20px;
+}
+
+.box.small {
+ width: 400px;
+}
+
+.box.big {
+ width: 800px;
 }
 
 input[type="number"] {
