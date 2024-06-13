@@ -109,7 +109,7 @@ input[type="number"] {
 }
 
 .button.large {
- width: calc(100% - 20px);
+ width: calc(100% - 30px);
 }
 
 #actions {

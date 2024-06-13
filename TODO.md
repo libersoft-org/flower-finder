@@ -2,4 +2,4 @@
 - Add rules text at start
 - Shrink fields on mobile low resolutions
 - Remake field rendering in startGame (`repeat(${settings.gridSize}, 40px)` ...)
-- Remove all console logs
+- Remove all console logs and comments
