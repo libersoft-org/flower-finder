@@ -1,4 +1,4 @@
-- Bug - Game doesn't end when player have no more moves because of blocked fields by stone
+- Bug: game doesn't end when player have no more moves because of blocked fields by stone - such player should be skipped and game should let play only players that are able to move. It also has to check, if player has some possibility to use their items
 - Add sounds
 - Add rules text at start
 - Shrink fields on mobile low resolutions
