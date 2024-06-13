@@ -12,11 +12,11 @@ function startGame() {
   numFlowers: Number(qs('#num-flowers').value),
   numStones: Number(qs('#num-stones').value),
   numMagnifiers: Number(qs('#num-magnifiers').value),
-  numClocks: Number(qs('#num-clocks').value),
+  numClocks: Number(qs('#num-clocks').value)
  };
  gameOver = false;
  players = [];
- for (let i = 0; i < settings.numPlayers; i++) players.push({ flowers: 0, magnifiers: 0, stones: 0 });
+ for (let i = 0; i < settings.numPlayers; i++) players.push({ flowers: 0, magnifiers: 0, stones: 0, clocks: 0 });
  currPlayer = 0;
  currentAction = null;
  board = Array(settings.gridSize).fill().map(() => Array(settings.gridSize).fill().map(() => ({ type: 0, revealed: false, blockedBy: [] })));
@@ -65,9 +65,13 @@ function handleCellClick(x, y) {
    stoneHandler(x, y);
    currentAction = null;
    break;
+  case 3:
+   clockHandler(x, y);
+   currentAction = null;
+   break;
   default:
    collectItem(x, y);
-   if (board[x][y].type !== 4) nextTurn();
+   nextTurn();
  }
 }
 
@@ -88,8 +92,8 @@ function collectItem(x, y) {
    itemCollected = true;
    break;
   case 4:
+   players[currPlayer].clocks++;
    itemCollected = true;
-   nextTurn();
    break;
  }
  revealCell(x, y);
@@ -143,12 +147,16 @@ function updateActions() {
  const player = players[currPlayer];
  qs('#magnifier-count').innerText = player.magnifiers;
  qs('#stone-count').innerText = player.stones;
+ qs('#clock-count').innerText = player.clocks;
  const elMagnifier = qs('#use-magnifier');
  if (player.magnifiers === 0) elMagnifier.classList.add('disabled');
  else elMagnifier.classList.remove('disabled');
  const elStone = qs('#use-stone');
  if (player.stones === 0) elStone.classList.add('disabled');
  else elStone.classList.remove('disabled');
+ const elClock = qs('#use-clock');
+ if (player.clocks === 0) elClock.classList.add('disabled');
+ else elClock.classList.remove('disabled');
 }
 
 function checkGameOver() {
@@ -160,6 +168,8 @@ function checkGameOver() {
   if (!elMagnifier.classList.contains('disabled')) elMagnifier.classList.add('disabled');
   const elStone = qs('#use-stone');
   if (!elStone.classList.contains('disabled')) elStone.classList.add('disabled');
+  const elClock = qs('#use-clock');
+  if (!elClock.classList.contains('disabled')) elClock.classList.add('disabled');
   const maxFlowers = Math.max(...players.map(player => player.flowers));
   const winners = players.filter(player => player.flowers === maxFlowers);
   if (winners.length > 1) alert('Game over! It\'s a tie.');
@@ -195,6 +205,11 @@ function useItem(id) {
     alert('Select a cell to place the 🪨.');
     currentAction = id;
    }
+   case 3:
+   if (players[currPlayer].clocks > 0) {
+    alert('You can reveal 2 items in 1 turn now.');
+    currentAction = id;
+   }
    break;
  }
 }
@@ -203,16 +218,10 @@ function magnifierHandler(x, y) {
  players[currPlayer].magnifiers--;
  for (let i = x - 1; i <= x + 1; i++) {
   for (let j = y - 1; j <= y + 1; j++) {
-   if (i >= 0 && i < settings.gridSize && j >= 0 && j < settings.gridSize) {
-    collectItem(i, j);
-    //if (!board[i][j].revealed && !board[i][j].blockedBy.some(v => v !== currPlayer)) {
-     //revealCell(i, j);
-     //hideSymbolAfterTime(i, j);
-    //}
-   }
+   if (i >= 0 && i < settings.gridSize && j >= 0 && j < settings.gridSize) collectItem(i, j);
   }
  }
- if (board[x][y].type !== 4) nextTurn();
+ nextTurn();
 }
 
 function stoneHandler(x, y) {
@@ -224,6 +233,12 @@ function stoneHandler(x, y) {
   }
   nextTurn();
  }
+}
+
+function clockHandler(x, y) {
+ players[currPlayer].clocks--;
+ collectItem(x, y);
+ updateActions();
 }
 
 function renderBlockedCells() {
