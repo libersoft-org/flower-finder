@@ -58,6 +58,7 @@ input[type="number"] {
  border: 1px solid #333;
  border-radius: 5px;
  cursor: pointer;
+ background: #FFF;
 }
 
 #board .field.unrevealed {
