@@ -91,6 +91,9 @@ input[type="number"] {
 }
 
 .button {
+ min-height: 30px;
+ line-height: 30px;
+ margin: 5px;
  padding: 10px;
  font-weight: bold;
  text-align: center;

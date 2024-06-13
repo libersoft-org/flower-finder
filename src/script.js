@@ -202,7 +202,7 @@ function useItem(id) {
    break;
   case 2:
    if (players[currPlayer].stones > 0) {
-    alert('Select a cell to place the 🪨.');
+    alert('Select a cell to use the 🪨.');
     currentAction = id;
    }
    break;
