@@ -11,4 +11,5 @@
 - Add sounds
 - Shrink fields on mobile low resolutions
 - Add rules text at start
+- Remove all console logs
 - Remake field rendering in startGame (`repeat(${settings.gridSize}, 40px)` ...)
