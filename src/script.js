@@ -160,7 +160,6 @@ function updateActions() {
 }
 
 function checkGameOver() {
- console.log("Check game over" + Math.floor(Math.random() * 100000));
  const flowersLeft = board.flat().filter(cell => cell.type === 1 && !cell.revealed).length;
  if (flowersLeft === 0) {
   gameOver = true;
