@@ -10,5 +10,4 @@
 - Add sounds
 - Shrink fields on mobile low resolutions
 - Add rules text at start
-- Add game screenshot (screenshot.webp) for README
 - Remake field rendering in startGame (`repeat(${settings.gridSize}, 40px)` ...)
