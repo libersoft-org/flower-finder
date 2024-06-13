@@ -33,7 +33,7 @@
 - Before the game begins, the following is determined:
   - Number of players (2 - 8)
   - Size of playing area (10x10 - 30x30, default 20x20)
-  - Number of flowers (1 - 30, default 10)
+  - Number of flowers (1 - 30, default 20)
   - Number of stones (0 - 10, default 5)
   - Number of magnifying glasses (0 - 10, default 5)
   - Number of clocks (0 - 10, default 5)
@@ -44,7 +44,7 @@
   - Choose which field to reveal (only fields that have not yet been revealed can be revealed)
   - Use an item:
     - Magnifying glass: reveals all the objects not only on the selected field, but also on all the fields around it (i.e. reveals 3x3 fields instead of one)
-    - Clock: Allows the player to make another move
+    - Clock: Allows the player to make another action in the same turn
     - Stone: the player chooses on which square in the board he wants to place the stone. The stone ensures that the opposing player cannot reveal any square that is horizontally and vertically on the same level as the placed stone. The stone can only be placed on already revealed squares.
 
 ### Game ending
