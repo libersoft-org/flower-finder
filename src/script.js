@@ -84,7 +84,6 @@ function handleCellClick(x, y) {
    revealCell(x, y);
    if (itemCollected) {
     hideSymbolAfterTime(x, y);
-    updatePlayerInfo();
     if (board[x][y].type !== 4) nextTurn();
    } else nextTurn();
  }
@@ -145,6 +144,7 @@ function updateActions() {
 }
 
 function checkGameOver() {
+ console.log("Check game over" + Math.floor(Math.random() * 100000));
  const flowersLeft = board.flat().filter(cell => cell.type === 1 && !cell.revealed).length;
  if (flowersLeft === 0) {
   gameOver = true;
@@ -208,7 +208,6 @@ function magnifierHandler(x, y) {
   revealCell(cell.x, cell.y, 0);
   hideSymbolAfterTime(cell.x, cell.y);
  });
- updatePlayerInfo();
  nextTurn();
 }
 
@@ -219,7 +218,6 @@ function stoneHandler(x, y) {
    if (!board[i][y].blockedBy.includes(currPlayer)) board[i][y].blockedBy.push(currPlayer);
    if (!board[x][i].blockedBy.includes(currPlayer)) board[x][i].blockedBy.push(currPlayer);
   }
-  updatePlayerInfo();
   nextTurn();
  }
 }
