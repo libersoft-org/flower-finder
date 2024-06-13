@@ -1,3 +1,4 @@
+- Bug - Game doesn't end when player have no more moves because of blocked fields
 - Add sounds
 - Add rules text at start
 - Shrink fields on mobile low resolutions
