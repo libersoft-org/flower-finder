@@ -1,3 +1,4 @@
 - Bug: game doesn't end when player have no more moves because of blocked fields by stone - such player should be skipped and game should let other players, that are able to move, play. It also has to check, if player has some possibility to use their items
 - Shrink fields on mobile low resolutions
+- Add possibility to turn off sounds
 - Remake field rendering in startGame (`repeat(${settings.gridSize}, 40px)` ...)
