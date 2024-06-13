@@ -1,3 +1,4 @@
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 let players = [];
 let board = [];
 let settings = {};
@@ -98,7 +99,10 @@ function collectItem(x, y) {
    break;
  }
  revealCell(x, y);
- if (itemCollected) hideSymbolAfterTime(x, y);
+ if (itemCollected) {
+  hideSymbolAfterTime(x, y);
+  playSoundItem();
+ } else playSoundEmpty();
 }
 
 
@@ -271,3 +275,26 @@ function resetGame() {
 function qs(name) {
  return document.querySelector(name);
 }
+
+function playSound(frequency, duration, startTime = audioContext.currentTime) {
+ const oscillator = audioContext.createOscillator();
+ const gainNode = audioContext.createGain();
+ oscillator.connect(gainNode);
+ gainNode.connect(audioContext.destination);
+ oscillator.type = 'sine';
+ oscillator.frequency.value = frequency;
+ gainNode.gain.setValueAtTime(1, startTime);
+ gainNode.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+ oscillator.start(startTime);
+ oscillator.stop(startTime + duration);
+};
+
+function playSoundEmpty() {
+ playSound(220, 0.5);
+};
+
+function playSoundItem() {
+ playSound(330, 0.3);
+ playSound(550, 0.3, audioContext.currentTime + 0.15);
+ playSound(770, 0.3, audioContext.currentTime + 0.3);
+};
