@@ -1,5 +1,6 @@
 # Bugs
 
+- When magnifier discovers neighbouring fields that were already discovered, it still shows already discovered items
 - Using magnifying glass is not adding harvest to inventory (flowers, magnifiers, stones, clocks)
 - If multiple clocks are harvested in one turn (when using magnifier), it should give player more turns than just one
 - When using magnifier, it collects items at black spots too (which should not)
