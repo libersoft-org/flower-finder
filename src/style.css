@@ -54,14 +54,18 @@ input[type="number"] {
 }
 
 #board .field.unrevealed {
- background-color: #888;
+ background-color: #555;
 }
 
 #board .field.revealed {
  background-color: #FFF;
 }
 
-#board .field.blocked {
+#board .field.blocked-revealed {
+ background-color: #CCC;
+}
+
+#board .field.blocked-unrevealed {
  background-color: #000;
 }
 

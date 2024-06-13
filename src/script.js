@@ -70,6 +70,7 @@ function handleCellClick(x, y) {
    currentAction = null;
    break;
   default:
+   if (board[x][y].revealed || board[x][y].blockedBy.some(v => v !== currPlayer)) return; 
    collectItem(x, y);
    nextTurn();
  }
@@ -204,6 +205,7 @@ function useItem(id) {
     alert('Select a cell to place the 🪨.');
     currentAction = id;
    }
+   break;
    case 3:
    if (players[currPlayer].clocks > 0) {
     alert('You can reveal 2 items in 1 turn now.');
@@ -235,6 +237,7 @@ function stoneHandler(x, y) {
 }
 
 function clockHandler(x, y) {
+ if (board[x][y].revealed || board[x][y].blockedBy.some(v => v !== currPlayer)) return;
  players[currPlayer].clocks--;
  collectItem(x, y);
  updateActions();
@@ -246,10 +249,14 @@ function renderBlockedCells() {
   for (let y = 0; y < settings.gridSize; y++) {
    const button = elBoard.children[x * settings.gridSize + y];
    if (board[x][y].blockedBy.some(v => v !== currPlayer)) {
-    button.classList.remove('unrevealed');
-    button.classList.add('blocked');   
+    if (board[x][y].revealed) button.classList.add('blocked-revealed');
+    else {
+     button.classList.remove('unrevealed');
+     button.classList.add('blocked-unrevealed');
+    }
    } else {
-    button.classList.remove('blocked');
+    button.classList.remove('blocked-unrevealed');
+    button.classList.remove('blocked-revealed');
     if (!board[x][y].revealed) button.classList.add('unrevealed');
    }
   }
