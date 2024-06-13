@@ -120,7 +120,9 @@ function renderCell(x, y, type) {
 function hideSymbolAfterTime(x, y) {
  const elBoard = qs('#board');
  const button = elBoard.children[x * settings.gridSize + y];
- setTimeout(() => button.innerHTML = '', 1000);
+ setTimeout(() => {
+  if (!gameOver) button.innerHTML = '';
+ }, 1000);
 }
 
 function updatePlayerInfo() {
