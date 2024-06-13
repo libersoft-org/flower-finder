@@ -105,7 +105,7 @@ input[type="number"] {
  font-weight: bold;
  text-align: center;
  border: 1px solid #000;
- border-radius: 5px;
+ border-radius: 10px;
  background-color: #FF3;
  cursor: pointer;
 }
