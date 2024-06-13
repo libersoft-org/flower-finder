@@ -129,7 +129,7 @@ function updatePlayerInfo() {
  qs('#score').innerHTML = players.map((player, index) => `👨 ${index + 1}: ${player.flowers} 🌸`).join('<br />');
  qs('#player').innerHTML = `Current 👨: ${currPlayer + 1}`;
  updateActions();
- checkGameEnd();
+ checkGameOver();
 }
 
 function updateActions() {
@@ -144,7 +144,7 @@ function updateActions() {
  else elStone.classList.remove('disabled');
 }
 
-function checkGameEnd() {
+function checkGameOver() {
  const flowersLeft = board.flat().filter(cell => cell.type === 1 && !cell.revealed).length;
  if (flowersLeft === 0) {
   gameOver = true;
