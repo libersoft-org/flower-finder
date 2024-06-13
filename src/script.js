@@ -66,28 +66,36 @@ function handleCellClick(x, y) {
    currentAction = null;
    break;
   default:
-   if (board[x][y].revealed || board[x][y].blockedBy.some(v => v !== currPlayer)) return;
-   let itemCollected = false;
-   if (board[x][y].type === 1) {
-    players[currPlayer].flowers++;
-    itemCollected = true;
-   } else if (board[x][y].type === 2) {
-    players[currPlayer].stones++;
-    itemCollected = true;
-   } else if (board[x][y].type === 3) {
-    players[currPlayer].magnifiers++;
-    itemCollected = true;
-   } else if (board[x][y].type === 4) {
-    itemCollected = true;
-    nextTurn();
-   }
-   revealCell(x, y);
-   if (itemCollected) {
-    hideSymbolAfterTime(x, y);
-    if (board[x][y].type !== 4) nextTurn();
-   } else nextTurn();
+   collectItem(x, y);
+   if (board[x][y].type !== 4) nextTurn();
  }
 }
+
+function collectItem(x, y) {
+ if (board[x][y].revealed || board[x][y].blockedBy.some(v => v !== currPlayer)) return;
+ let itemCollected = false;
+ switch (board[x][y].type) {
+  case 1:
+   players[currPlayer].flowers++;
+   itemCollected = true;
+   break;
+  case 2:
+   players[currPlayer].stones++;
+   itemCollected = true;
+   break;
+  case 3:
+   players[currPlayer].magnifiers++;
+   itemCollected = true;
+   break;
+  case 4:
+   itemCollected = true;
+   nextTurn();
+   break;
+ }
+ revealCell(x, y);
+ if (itemCollected) hideSymbolAfterTime(x, y);
+}
+
 
 function revealCell(x, y) {
  board[x][y].revealed = true;
@@ -192,23 +200,19 @@ function useItem(id) {
 }
 
 function magnifierHandler(x, y) {
- const cellsToReveal = [];
+ players[currPlayer].magnifiers--;
  for (let i = x - 1; i <= x + 1; i++) {
   for (let j = y - 1; j <= y + 1; j++) {
    if (i >= 0 && i < settings.gridSize && j >= 0 && j < settings.gridSize) {
-    if (!board[i][j].revealed || !board[i][j].blockedBy.some(v => v !== currPlayer)) {
-     revealCell(i, j);
-     cellsToReveal.push({ x: i, y: j });
-    }
+    collectItem(i, j);
+    //if (!board[i][j].revealed && !board[i][j].blockedBy.some(v => v !== currPlayer)) {
+     //revealCell(i, j);
+     //hideSymbolAfterTime(i, j);
+    //}
    }
   }
  }
- players[currPlayer].magnifiers--;
- cellsToReveal.forEach(cell => {
-  revealCell(cell.x, cell.y, 0);
-  hideSymbolAfterTime(cell.x, cell.y);
- });
- nextTurn();
+ if (board[x][y].type !== 4) nextTurn();
 }
 
 function stoneHandler(x, y) {
